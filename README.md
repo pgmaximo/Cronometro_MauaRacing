@@ -2,7 +2,10 @@
 CRONOMETRO_MAUARACING
 
 # Descrição #
-O CRONOMETRO_MAUARACING é um projeto desenvolvido pela equipe de DevOps e elétrica do time da FSAE, Maua Racing. Ele consiste em dois arquivos, cada um com uma aplicação específica, com o objetivo de fornecer um sistema de cronometragem para diferentes ocasiões.
+O CRONOMETRO_MAUARACING é um projeto desenvolvido pela equipe de DevOps e elétrica do time da FSAE, Maua Racing. Ele consiste em dois arquivos, cada um com uma aplicação específica, com o objetivo de fornecer um sistema de cronometragem para diferentes ocasiões, usando ESP32.
+
+# Linguagem utilizda #
+- C/C++ no arduino IDE
 
 # cronometro.ivo # 
 O arquivo "cronometro.ivo" é voltado para uma aplicação de cronometragem em pistas de corrida. A ideia principal é ter dois pares de cones, cada um ligado a uma barreira de infravermelho, posicionados no início e no final do trajeto. Esses cones são conectados por um cabo ao ESP32, que atua como o dispositivo central do sistema. Quando um veículo cruza as barreiras de infravermelho, o cronômetro é ativado e o tempo decorrido entre os cones é medido e exibido.
@@ -28,4 +31,10 @@ Contribuições são bem-vindas! Se você deseja melhorar este projeto, siga as 
 Faça um fork deste repositório.
 Crie um branch com a sua nova funcionalidade ou correção de bug: git checkout -b minha-nova-funcionalidade.
 Faça as alterações desejadas e adicione os devidos commits: git commit -m 'Adicionando nova funcionalidade'.
-Envie suas alterações para o
+Envie suas alterações para o seu repositório remoto: git push origin minha-nova-funcionalidade.
+Envie uma solicitação de pull (pull request) para este repositório principal, explicando suas alterações.
+# Licença #
+-- SENDO CONSTRUIDO --
+
+# Contato #
+Para mais informações sobre o projeto CRONOMETRO_MAUARACING, entre em contato com a equipe da Maua Racing pelo DIRECT do [instagram](url) ou me conta-te pelo email: pedrogmaximo@gmail.com
