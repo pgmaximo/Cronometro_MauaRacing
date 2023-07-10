@@ -6,7 +6,8 @@ A ideia é utilizar apenas UM(1) ESP32, conectando o outro infravermelho por um 
 
 // Constantes
 const unsigned int pino_inicio = 26;              // Pino de sinal de start
-const unsigned int pino_fim = 14;                 // Pino de sinal de end
+const unsigned int pino_fim = 4;                 // Pino de sinal de end
+
 //Variavel
 bool crono_on = false;                            // Status do cronometro (Ligado ou Desligado)
 unsigned long tempo_inicio = 0;                   // Tempo de incio
@@ -14,7 +15,6 @@ unsigned long tempo_fim = 0;                      // Tempo de fim
 
 void setup() {
   Serial.begin(115200);
-
   pinMode(pino_inicio, INPUT);                    // Define o pino 26 como INPUT
   pinMode(pino_fim, INPUT);                       // Define o pino 14 como INPUT
 
@@ -23,7 +23,7 @@ void setup() {
 
 void loop() {
   // Começa a contar (Se passar pelo primeiro cone)
-  if (digitalRead(pino_inicio) == 1 && crono_on == false) {
+  if (digitalRead(pino_inicio) == 0 && crono_on == false) {
     Serial.println("COMEÇANDO!");
     tempo_inicio = millis();                     // Começa o cronometro
     crono_on = true;                             // Status do cronometro como ligado
@@ -35,17 +35,17 @@ void loop() {
     Serial.println(" milisegundos");
 
     // Para de contar (Se passar pelo segundo cone)
-    if (digitalRead(pino_fim) == 1) {
+    if (digitalRead(pino_fim) == 0) {
       tempo_fim = millis();
       crono_on = false;
 
       // Calculo de tempo
-      int tempo_decorrido = tempo_fim - tempo_inicio;
-      int milisegundos = tempo_decorrido % 1000;
+      unsigned int tempo_decorrido = tempo_fim - tempo_inicio;
+      unsigned int milisegundos = tempo_decorrido % 1000;
       tempo_decorrido = tempo_decorrido / 1000;
-      int segundos = tempo_decorrido % 60;
+      unsigned int segundos = tempo_decorrido % 60;
       tempo_decorrido = tempo_decorrido / 60;
-      int minutos = tempo_decorrido;
+      unsigned int minutos = tempo_decorrido;
 
       // Saida no monitor serial
       Serial.println("##################### RESULTADO #####################");
@@ -55,7 +55,7 @@ void loop() {
       Serial.print(segundos);
       Serial.print(" segundos, ");
       Serial.print(milisegundos);
-      Serial.print(" milisegundos.\n");
+      Serial.print(" milisegundos.");
     }
   }
 }
