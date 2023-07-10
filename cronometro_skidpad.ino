@@ -11,7 +11,7 @@ const unsigned int pino = 26;                   // Pino de sinal do infravermelh
 bool status;                                    // Mostra se o status está ON(true) ou OFF(false)
 unsigned int volta = 0;                         // Indica a volta
 unsigned long lista_tempo[5];                   // Lista com todos os milisegundos que passou pelo infra 
-/*(0 = volta 1, 1 = volta 2, 2 = volta 3, 3 = volta 4, 4 = fim do skidpad)*/
+/*(0 = volta 1/começo, 1 = volta 2, 2 = volta 3, 3 = volta 4, 4 = fim do skidpad)*/
 
 void setup() {
   Serial.begin(115200);
@@ -20,10 +20,10 @@ void setup() {
 
 void loop() {
   // Se carro passar no infra, ativa o cronometro
-  if (digitalRead(pino) == 1) {
+  if (digitalRead(pino) == 0) {
     volta += 1;
     status = true;
-    Serial.print("---- VOLTA " + String(volta) + " ----");
+    Serial.print("----------- VOLTA " + String(volta) + " -----------");
     lista_tempo[volta] = millis();              // Guarda o milisegundo que o carro passou no infra
   }
 
@@ -33,17 +33,23 @@ void loop() {
 
     if (volta == 5) {                           // Se tiver tido a ultima volta(passdo pela 5 vez) poderá dar print em tudo
       status = false;
+
+      // Calculo do tempo
       unsigned long volta1 = lista_tempo[1] - lista_tempo[0];
       unsigned long volta2 = lista_tempo[2] - lista_tempo[1];
       unsigned long volta3 = lista_tempo[3] - lista_tempo[2];
       unsigned long volta4 = lista_tempo[4] - lista_tempo[3];
       unsigned long volta24 = volta2 + volta4;
+      unsigned long voltaTotal = lista_tempo[4] - lista_tempo[0];
 
+      // Print na janela SERIAl do IDE
+      Serial.println("##################### RESULTADO #####################");
       Serial.println("Volta 1: " + String(volta1));
       Serial.println("-> Volta 2: " + String(volta2));
       Serial.println("Volta 3: " + String(volta3));
       Serial.println("-> Volta 4: " + String(volta4));
       Serial.println("-> Tempo volta 2 e 4: " + String(volta24));
+      Serial.println("Tempo total: "+ String(voltaTotal));
     }
   }
 }
