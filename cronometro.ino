@@ -6,7 +6,7 @@ A ideia é utilizar apenas UM(1) ESP32, conectando o outro infravermelho por um 
 
 // Constantes
 const unsigned int pino_inicio = 26;              // Pino de sinal de start
-const unsigned int pino_fim = 4;                 // Pino de sinal de end
+const unsigned int pino_fim = 34;                 // Pino de sinal de end
 
 //Variavel
 bool crono_on = false;                            // Status do cronometro (Ligado ou Desligado)
@@ -16,7 +16,7 @@ unsigned long tempo_fim = 0;                      // Tempo de fim
 void setup() {
   Serial.begin(115200);
   pinMode(pino_inicio, INPUT);                    // Define o pino 26 como INPUT
-  pinMode(pino_fim, INPUT);                       // Define o pino 14 como INPUT
+  pinMode(pino_fim, INPUT);                       // Define o pino 34 como INPUT
 
   tempo_inicio = millis();
 }
